@@ -45,6 +45,11 @@
 
   <section class="auth-panel">
     <div class="auth-content">
+      <a class="button button--secondary auth-back" href="/">
+        <span aria-hidden="true">&larr;</span>
+        Về trang chủ
+      </a>
+
       <div class="auth-tabs" role="tablist" aria-label="Tài khoản">
         <button class="auth-tab is-active" type="button" role="tab" id="login-tab" aria-selected="true" aria-controls="auth-form" data-auth-mode="login">Đăng nhập</button>
         <button class="auth-tab" type="button" role="tab" id="register-tab" aria-selected="false" aria-controls="auth-form" data-auth-mode="register">Đăng ký</button>
@@ -58,18 +63,40 @@
       <form class="auth-form" id="auth-form" novalidate>
         <label class="auth-field auth-field--register" for="full-name" hidden>
           <span>HỌ VÀ TÊN</span>
-          <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Tên của bạn">
+          <%- include('../components/input', {
+            id: 'full-name',
+            name: 'name',
+            type: 'text',
+            autocomplete: 'name',
+            placeholder: 'Tên của bạn'
+          }) %>
         </label>
 
         <label class="auth-field" for="email">
           <span>EMAIL</span>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="ten@bk.edu.vn" required>
+          <%- include('../components/input', {
+            id: 'email',
+            name: 'email',
+            type: 'email',
+            autocomplete: 'email',
+            placeholder: 'ten@bk.edu.vn',
+            required: true
+          }) %>
         </label>
 
         <label class="auth-field" for="password">
           <span>MẬT KHẨU</span>
           <span class="password-control">
-            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Ít nhất 6 ký tự" minlength="6" maxlength="72" required>
+            <%- include('../components/input', {
+              id: 'password',
+              name: 'password',
+              type: 'password',
+              autocomplete: 'current-password',
+              placeholder: 'Ít nhất 6 ký tự',
+              minlength: 6,
+              maxlength: 72,
+              required: true
+            }) %>
             <button class="password-toggle" type="button" aria-label="Hiện mật khẩu" aria-pressed="false">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.2-6 9.5-6 9.5 6 9.5 6-3.2 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
             </button>
@@ -78,7 +105,15 @@
 
         <label class="auth-field auth-field--register" for="confirm-password" hidden>
           <span>NHẬP LẠI MẬT KHẨU</span>
-          <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu" minlength="6" maxlength="72">
+          <%- include('../components/input', {
+            id: 'confirm-password',
+            name: 'confirmPassword',
+            type: 'password',
+            autocomplete: 'new-password',
+            placeholder: 'Nhập lại mật khẩu',
+            minlength: 6,
+            maxlength: 72
+          }) %>
         </label>
 
         <div class="auth-options" id="login-options">
@@ -87,7 +122,13 @@
         </div>
 
         <p class="auth-feedback" id="auth-feedback" role="alert" aria-live="polite" hidden></p>
-        <button class="auth-submit" id="auth-submit" type="submit">Đăng nhập</button>
+        <%- include('../components/button', {
+          id: 'auth-submit',
+          type: 'submit',
+          variant: 'danger',
+          className: 'auth-submit',
+          label: 'Đăng nhập'
+        }) %>
       </form>
 
       <p class="auth-switch-prompt" id="auth-switch-prompt">

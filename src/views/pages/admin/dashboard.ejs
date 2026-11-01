@@ -15,24 +15,26 @@
     <p class="dashboard-intro">Chào mừng bạn trở lại. Đây là tổng quan tài khoản thư viện.</p>
 
     <section class="dashboard-cards" aria-label="Thống kê">
-      <article class="dashboard-card">
-        <span class="dashboard-card-icon">01</span>
-        <p>Độc giả</p>
-        <strong><%= readerCount %></strong>
-        <span>Tài khoản đã đăng ký</span>
-      </article>
-      <article class="dashboard-card dashboard-card--green">
-        <span class="dashboard-card-icon">02</span>
-        <p>Vai trò của bạn</p>
-        <strong>Admin</strong>
-        <span><%= user.email %></span>
-      </article>
-      <article class="dashboard-card dashboard-card--gold">
-        <span class="dashboard-card-icon">03</span>
-        <p>Trạng thái</p>
-        <strong>Đang hoạt động</strong>
-        <span>Quyền quản trị thư viện</span>
-      </article>
+      <%- include('../../components/stat-card', {
+        icon: '01',
+        title: 'Độc giả',
+        value: readerCount,
+        detail: 'Tài khoản đã đăng ký'
+      }) %>
+      <%- include('../../components/stat-card', {
+        icon: '02',
+        title: 'Vai trò của bạn',
+        value: 'Admin',
+        detail: user.email,
+        variant: 'green'
+      }) %>
+      <%- include('../../components/stat-card', {
+        icon: '03',
+        title: 'Trạng thái',
+        value: 'Đang hoạt động',
+        detail: 'Quyền quản trị thư viện',
+        variant: 'gold'
+      }) %>
     </section>
 
     <section class="dashboard-welcome">

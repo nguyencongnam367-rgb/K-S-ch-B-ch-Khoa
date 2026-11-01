@@ -1,1 +1,22 @@
-/* TODO: Style shared form inputs. */
+.form-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  border: 1px solid #e4dccb;
+  border-radius: 999px;
+  outline: none;
+  color: var(--color-ink);
+  background: #f3efe3;
+  font: inherit;
+  font-size: 13px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.form-input::placeholder {
+  color: #aaa194;
+}
+
+.form-input:focus {
+  border-color: var(--color-emerald-bright);
+  box-shadow: 0 0 0 3px rgba(32, 104, 71, 0.1);
+}

@@ -1,1 +1,6 @@
-<!-- TODO: Add the statistics card component. -->
+<article class="dashboard-card<%= typeof variant === 'string' ? ' dashboard-card--' + variant : '' %>">
+  <span class="dashboard-card-icon"><%= icon %></span>
+  <p><%= title %></p>
+  <strong><%= value %></strong>
+  <span><%= detail %></span>
+</article>

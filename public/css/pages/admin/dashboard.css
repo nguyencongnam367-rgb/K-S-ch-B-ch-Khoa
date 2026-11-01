@@ -96,58 +96,6 @@
   margin-top: 48px;
 }
 
-.dashboard-card {
-  display: flex;
-  min-height: 210px;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 24px;
-  border: 1px solid rgba(31, 58, 43, 0.09);
-  border-radius: 20px;
-  background: #fffdf8;
-  box-shadow: 0 12px 30px rgba(31, 58, 43, 0.04);
-}
-
-.dashboard-card-icon {
-  display: grid;
-  width: 35px;
-  height: 35px;
-  place-items: center;
-  border-radius: 50%;
-  color: var(--color-red);
-  background: rgba(200, 50, 43, 0.09);
-  font-size: 11px;
-}
-
-.dashboard-card > p {
-  margin: 22px 0 5px;
-  color: var(--color-muted);
-  font-size: 13px;
-}
-
-.dashboard-card > strong {
-  color: var(--color-ink);
-  font-size: clamp(21px, 3vw, 30px);
-  font-weight: 500;
-}
-
-.dashboard-card > span:last-child {
-  margin-top: 7px;
-  color: #999184;
-  font-size: 11px;
-  overflow-wrap: anywhere;
-}
-
-.dashboard-card--green .dashboard-card-icon {
-  color: var(--color-emerald);
-  background: rgba(31, 58, 43, 0.1);
-}
-
-.dashboard-card--gold .dashboard-card-icon {
-  color: #9c7c1d;
-  background: rgba(212, 175, 55, 0.18);
-}
-
 .dashboard-welcome {
   margin-top: 22px;
   padding: 26px 30px;
@@ -175,7 +123,4 @@
     margin-top: 32px;
   }
 
-  .dashboard-card {
-    min-height: 175px;
-  }
 }

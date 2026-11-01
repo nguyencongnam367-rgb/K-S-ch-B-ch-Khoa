@@ -1,1 +1,19 @@
-<!-- TODO: Add the shared button component. -->
+<%
+  const buttonType = ['button', 'submit', 'reset'].includes(typeof type === 'string' ? type : '') ? type : 'button';
+  const buttonVariant = ['primary', 'secondary', 'danger'].includes(typeof variant === 'string' ? variant : '') ? variant : 'primary';
+  const buttonSize = ['small', 'large'].includes(typeof size === 'string' ? size : '') ? size : '';
+  const buttonClasses = ['button', `button--${buttonVariant}`];
+  if (buttonSize) buttonClasses.push(`button--${buttonSize}`);
+  if (typeof className === 'string' && className) buttonClasses.push(className);
+%>
+<button
+  class="<%= buttonClasses.join(' ') %>"
+  type="<%= buttonType %>"
+  <% if (typeof id === 'string' && id) { %>id="<%= id %>"<% } %>
+  <% if (typeof name === 'string' && name) { %>name="<%= name %>"<% } %>
+  <% if (typeof value !== 'undefined') { %>value="<%= value %>"<% } %>
+  <% if (typeof disabled !== 'undefined' && disabled) { %>disabled<% } %>
+  <% if (typeof ariaLabel === 'string' && ariaLabel) { %>aria-label="<%= ariaLabel %>"<% } %>
+>
+  <%= typeof label === 'string' ? label : '' %>
+</button>

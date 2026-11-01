@@ -16,7 +16,7 @@ router.get(['/admin', '/admin/dashboard'], requireAdmin, (req, res) => {
     readerCount: countUsers(),
     showHeader: false,
     showFooter: false,
-    pageStyles: ['/css/pages/admin/dashboard.css']
+    pageStyles: ['/css/pages/admin/dashboard.css', '/css/components/stat-card.css']
   });
 });
 
