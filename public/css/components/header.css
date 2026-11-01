@@ -1,0 +1,144 @@
+.site-header {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(100% - 32px, 1220px);
+  min-height: 76px;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 24px;
+  margin: 14px auto 0;
+  padding: 0 clamp(16px, 3vw, 38px);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 22px;
+  background: var(--color-paper-deep);
+}
+
+.brand {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.brand-mark {
+  color: var(--color-red);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.07em;
+}
+
+.brand-name {
+  font-size: 16px;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 3vw, 34px);
+}
+
+.site-nav a {
+  color: #777168;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.site-nav a:hover {
+  color: var(--color-emerald);
+}
+
+.header-login {
+  justify-self: end;
+  min-width: 112px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  color: var(--color-paper);
+  background: var(--color-red);
+  font-size: 13px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.header-login:hover {
+  transform: translateY(-1px);
+  background: #ad2924;
+}
+
+.header-account {
+  display: flex;
+  justify-self: end;
+  align-items: center;
+  gap: 14px;
+}
+
+.header-account form {
+  margin: 0;
+}
+
+.header-greeting {
+  max-width: 150px;
+  overflow: hidden;
+  color: var(--color-emerald);
+  font-size: 13px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header-logout {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+@media (max-width: 720px) {
+  .site-header {
+    min-height: 68px;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .site-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+    gap: 22px;
+    overflow-x: auto;
+    padding: 0 0 14px;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .header-login {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 98px;
+    padding: 9px 15px;
+  }
+
+  .header-account {
+    grid-column: 2;
+    grid-row: 1;
+    gap: 8px;
+  }
+
+  .header-account .header-login {
+    min-width: 0;
+    padding: 9px 13px;
+  }
+
+  .header-greeting {
+    max-width: 82px;
+    font-size: 12px;
+  }
+}

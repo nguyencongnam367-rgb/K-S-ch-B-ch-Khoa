@@ -1,0 +1,100 @@
+<section class="auth-shell" aria-label="Đăng nhập hoặc đăng ký">
+  <aside class="auth-story">
+    <a class="auth-brand" href="/" aria-label="Thư viện BK - Trang chủ">
+      <span class="auth-brand-mark">BK</span>
+      <span>Thư viện Cao đẳng Bách Khoa</span>
+    </a>
+
+    <div class="bookcase" role="img" aria-label="Kệ sách với những cuốn sách nhiều màu sắc">
+      <div class="bookcase-shelf bookcase-shelf--top">
+        <span class="shelf-book shelf-book--red"><span>NodeJS</span></span>
+        <span class="shelf-book shelf-book--cream"><span>Lập trình</span></span>
+        <span class="shelf-book shelf-book--sage"><span>Thiết kế</span></span>
+        <span class="shelf-book shelf-book--gold"><span>Dữ liệu</span></span>
+        <span class="shelf-book shelf-book--dark"><span>JavaScript</span></span>
+        <span class="shelf-book shelf-book--red shelf-book--short"><span>Web</span></span>
+        <span class="shelf-book shelf-book--sage shelf-book--short"><span>Đọc</span></span>
+      </div>
+      <div class="bookcase-shelf bookcase-shelf--middle">
+        <div class="shelf-stack">
+          <span class="stack-book stack-book--cream">Du lịch</span>
+          <span class="stack-book stack-book--gold">Kế toán</span>
+          <span class="stack-book stack-book--red">Cơ sở dữ liệu</span>
+        </div>
+        <span class="shelf-book shelf-book--cream shelf-book--short"><span>Ẩm thực</span></span>
+        <span class="shelf-book shelf-book--dark"><span>Bảo mật</span></span>
+        <span class="shelf-book shelf-book--gold shelf-book--short"><span>Điện</span></span>
+        <span class="shelf-book shelf-book--red"><span>Web</span></span>
+        <span class="shelf-book shelf-book--sage shelf-book--short"><span>UI</span></span>
+      </div>
+      <div class="bookcase-shelf bookcase-shelf--bottom">
+        <span class="shelf-book shelf-book--sage"><span>Java</span></span>
+        <span class="shelf-book shelf-book--red shelf-book--short"><span>SQL</span></span>
+        <span class="shelf-book shelf-book--gold"><span>Kinh tế</span></span>
+        <span class="shelf-book shelf-book--cream"><span>Văn học</span></span>
+        <span class="shelf-book shelf-book--red"><span>PHP</span></span>
+        <span class="shelf-book shelf-book--sage shelf-book--short"><span>React</span></span>
+      </div>
+    </div>
+
+    <div class="auth-story-copy">
+      <p class="auth-story-title">Chắc tay nghề,<br>vững tương lai!</p>
+      <p>Đăng nhập để mượn sách và theo dõi hạn trả.</p>
+    </div>
+  </aside>
+
+  <section class="auth-panel">
+    <div class="auth-content">
+      <div class="auth-tabs" role="tablist" aria-label="Tài khoản">
+        <button class="auth-tab is-active" type="button" role="tab" id="login-tab" aria-selected="true" aria-controls="auth-form" data-auth-mode="login">Đăng nhập</button>
+        <button class="auth-tab" type="button" role="tab" id="register-tab" aria-selected="false" aria-controls="auth-form" data-auth-mode="register">Đăng ký</button>
+      </div>
+
+      <div class="auth-heading">
+        <h1 id="auth-title">Chào mừng <em>trở lại</em></h1>
+        <p id="auth-subtitle">Dùng email trường để vào thư viện.</p>
+      </div>
+
+      <form class="auth-form" id="auth-form" novalidate>
+        <label class="auth-field auth-field--register" for="full-name" hidden>
+          <span>HỌ VÀ TÊN</span>
+          <input id="full-name" name="name" type="text" autocomplete="name" placeholder="Tên của bạn">
+        </label>
+
+        <label class="auth-field" for="email">
+          <span>EMAIL</span>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="ten@bk.edu.vn" required>
+        </label>
+
+        <label class="auth-field" for="password">
+          <span>MẬT KHẨU</span>
+          <span class="password-control">
+            <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Ít nhất 6 ký tự" minlength="6" maxlength="72" required>
+            <button class="password-toggle" type="button" aria-label="Hiện mật khẩu" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.2-6 9.5-6 9.5 6 9.5 6-3.2 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></svg>
+            </button>
+          </span>
+        </label>
+
+        <label class="auth-field auth-field--register" for="confirm-password" hidden>
+          <span>NHẬP LẠI MẬT KHẨU</span>
+          <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu" minlength="6" maxlength="72">
+        </label>
+
+        <div class="auth-options" id="login-options">
+          <label class="remember-option"><input type="checkbox" name="remember"> <span>Ghi nhớ đăng nhập</span></label>
+          <a href="mailto:thuvien@bk.edu.vn?subject=Qu%C3%AAn%20m%E1%BA%ADt%20kh%E1%BA%A9u">Quên mật khẩu</a>
+        </div>
+
+        <p class="auth-feedback" id="auth-feedback" role="alert" aria-live="polite" hidden></p>
+        <button class="auth-submit" id="auth-submit" type="submit">Đăng nhập</button>
+      </form>
+
+      <p class="auth-switch-prompt" id="auth-switch-prompt">
+        Chưa có tài khoản?
+        <button type="button" data-auth-mode="register">Đăng ký độc giả</button>
+      </p>
+      <p class="auth-privacy">Thông tin của bạn chỉ được dùng cho hoạt động thư viện.</p>
+    </div>
+  </section>
+</section>

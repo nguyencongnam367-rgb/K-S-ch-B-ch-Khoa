@@ -1,0 +1,24 @@
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Thư viện BK - Trang chủ">
+    <span class="brand-mark">BK</span>
+    <span class="brand-name">Thư viện</span>
+  </a>
+
+  <nav class="site-nav" aria-label="Điều hướng chính">
+    <a href="/#kham-pha">Khám phá</a>
+    <a href="/#the-loai">Thể loại</a>
+    <a href="/#sach-moi">Sách mới</a>
+    <a href="/#muon-sach">Mượn của tôi</a>
+  </nav>
+
+  <% if (user) { %>
+    <div class="header-account">
+      <a class="header-greeting" href="<%= user.role === 'admin' ? '/admin/dashboard' : '/#muon-sach' %>"><%= user.name %></a>
+      <form action="/api/auth/logout" method="post">
+        <button class="header-login header-logout" type="submit">Đăng xuất</button>
+      </form>
+    </div>
+  <% } else { %>
+    <a class="header-login" href="/auth">Đăng nhập</a>
+  <% } %>
+</header>

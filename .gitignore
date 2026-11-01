@@ -1,0 +1,7 @@
+node_modules/
+.env
+src/data/users.json
+src/data/users.json.*.tmp
+public/uploads/*
+!public/uploads/.gitkeep
+npm-debug.log*

@@ -1,0 +1,43 @@
+<section class="dashboard">
+  <header class="dashboard-header">
+    <a class="dashboard-brand" href="/">
+      <span class="dashboard-brand-mark">BK</span>
+      <span>Thư viện <small>QUẢN TRỊ</small></span>
+    </a>
+    <form action="/api/auth/logout" method="post">
+      <button class="dashboard-logout" type="submit">Đăng xuất</button>
+    </form>
+  </header>
+
+  <main class="dashboard-content">
+    <p class="dashboard-eyebrow">KHÔNG GIAN QUẢN TRỊ</p>
+    <h1>Xin chào, <em><%= user.name %></em></h1>
+    <p class="dashboard-intro">Chào mừng bạn trở lại. Đây là tổng quan tài khoản thư viện.</p>
+
+    <section class="dashboard-cards" aria-label="Thống kê">
+      <article class="dashboard-card">
+        <span class="dashboard-card-icon">01</span>
+        <p>Độc giả</p>
+        <strong><%= readerCount %></strong>
+        <span>Tài khoản đã đăng ký</span>
+      </article>
+      <article class="dashboard-card dashboard-card--green">
+        <span class="dashboard-card-icon">02</span>
+        <p>Vai trò của bạn</p>
+        <strong>Admin</strong>
+        <span><%= user.email %></span>
+      </article>
+      <article class="dashboard-card dashboard-card--gold">
+        <span class="dashboard-card-icon">03</span>
+        <p>Trạng thái</p>
+        <strong>Đang hoạt động</strong>
+        <span>Quyền quản trị thư viện</span>
+      </article>
+    </section>
+
+    <section class="dashboard-welcome">
+      <span>GÓC THỦ THƯ</span>
+      <p>Quản lý thư viện bắt đầu từ những điều nhỏ: một cuốn sách được sắp đúng chỗ, một độc giả tìm đúng trang sách mình cần.</p>
+    </section>
+  </main>
+</section>

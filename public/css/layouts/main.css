@@ -1,0 +1,13 @@
+.home-page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.home-page main {
+  flex: 1;
+}
+
+.home-placeholder {
+  min-height: 1px;
+}
