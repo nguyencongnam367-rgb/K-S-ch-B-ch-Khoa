@@ -1,1 +1,91 @@
-<div class="home-placeholder" aria-hidden="true"></div>
+<section class="library-home">
+  <div class="library-showcase">
+    <div class="library-showcase__panel library-showcase__panel--copy">
+      <div class="library-kicker">Chắc tay nghề, vững tương lai</div>
+      <h1>Mỗi cuốn sách,<br>một chân trời.</h1>
+      <p>
+        Tra cứu, mượn và theo dõi sách của thư viện trường, nhẹ nhàng như lật một trang.
+      </p>
+
+      <form class="library-search" data-search-form>
+        <input
+          type="search"
+          name="q"
+          class="library-search__input"
+          placeholder="Tên sách, tác giả, ISBN"
+          aria-label="Tìm kiếm sách"
+        >
+        <button type="submit" class="button button--primary library-search__button">Tìm sách</button>
+      </form>
+
+      <div class="library-metrics" aria-label="Thống kê thư viện">
+        <div>
+          <strong>4.820</strong>
+          <span>đầu sách</span>
+        </div>
+        <div>
+          <strong>12</strong>
+          <span>thể loại</span>
+        </div>
+        <div>
+          <strong>1.260</strong>
+          <span>độc giả</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="library-showcase__panel library-showcase__panel--shelf">
+      <div class="bookcase" aria-label="Kệ sách">
+        <div class="bookcase__shelf bookcase__shelf--top">
+          <span class="book book--sage book--wide">REST API</span>
+          <span class="book book--dark book--mid">NodeJS</span>
+          <span class="book book--red book--narrow">Java</span>
+          <span class="book book--cream book--mid">AI</span>
+          <span class="book book--brown book--mid">Git</span>
+        </div>
+
+        <div class="bookcase__shelf bookcase__shelf--middle">
+          <span class="book book--dark book--mid">Nuôi dạy</span>
+          <span class="book book--red book--wide">Design</span>
+          <span class="book book--cream book--mid">Kỹ năng</span>
+          <span class="book book--sage book--mid">Lập trình</span>
+          <span class="book book--gold book--narrow">Data</span>
+        </div>
+
+        <div class="bookcase__shelf bookcase__shelf--bottom">
+          <span class="book book--brown book--mid">Toán</span>
+          <span class="book book--green book--wide">CSDL</span>
+          <span class="book book--cream book--wide">Đọc hiểu</span>
+          <span class="book book--sage book--mid">Tiếng Anh</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="library-stack">
+    <div class="library-stack__header">
+      <h2>Mới về kệ</h2>
+      <a href="#">Xem tất cả</a>
+    </div>
+
+    <div class="library-book-grid">
+      <% books.forEach(function (book) { %>
+        <a
+          class="library-book library-book--<%= book.accent %>"
+          href="/books/<%= book.id %>"
+          data-book-card
+          data-title="<%= book.title %>"
+          data-author="<%= book.author %>"
+          data-category="<%= book.category %>"
+        >
+          <div class="library-book__cover">
+            <span><%= book.coverLines[0] %><br><%= book.coverLines[1] %></span>
+          </div>
+          <h3><%= book.title %></h3>
+          <small><%= book.availability %></small>
+        </a>
+      <% }); %>
+    </div>
+    <p class="book-grid__empty" role="status" aria-live="polite" hidden>Không tìm thấy sách phù hợp.</p>
+  </section>
+</section>

@@ -1,1 +1,117 @@
-/* TODO: Style book cards. */
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+  margin-top: 28px;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(31, 58, 43, 0.08);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 12px 30px rgba(26, 26, 26, 0.03);
+}
+
+.book-card__cover {
+  display: flex;
+  min-height: 172px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.book-card__cover--rose {
+  background: linear-gradient(135deg, #d1463f 0%, #a43630 100%);
+}
+
+.book-card__cover--gold {
+  background: linear-gradient(135deg, #d9b35a 0%, #85662d 100%);
+}
+
+.book-card__cover--sage {
+  background: linear-gradient(135deg, #92b0a0 0%, #49685c 100%);
+}
+
+.book-card__cover--deep {
+  background: linear-gradient(135deg, #1f2f50 0%, #14213d 100%);
+}
+
+.book-card__cover--emerald {
+  background: linear-gradient(135deg, #3b8e74 0%, #225e4a 100%);
+}
+
+.book-card__cover--sand {
+  background: linear-gradient(135deg, #d6c4a3 0%, #8d7d62 100%);
+}
+
+.book-card__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px 20px 18px;
+}
+
+.book-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--color-muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.book-card h3 {
+  margin: 0;
+  font-size: clamp(20px, 2vw, 23px);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.book-card__author {
+  margin: -4px 0 0;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.book-card__description {
+  margin: 0;
+  color: #605c56;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.book-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: auto;
+}
+
+.book-card__price {
+  color: var(--color-emerald);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .book-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .book-grid {
+    grid-template-columns: 1fr;
+  }
+}

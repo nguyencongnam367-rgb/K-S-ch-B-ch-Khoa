@@ -1,1 +1,76 @@
-<!-- TODO: Add the reader's loan history page. -->
+<section class="loan-page">
+  <header class="loan-topbar">
+    <a class="loan-topbar__brand" href="/" aria-label="Thư viện BK - Trang chủ">BK</a>
+    <nav class="loan-topbar__breadcrumb" aria-label="Đường dẫn">
+      <a href="/">Trang chủ</a>
+      <span>›</span>
+      <span aria-current="page">Mượn của tôi</span>
+    </nav>
+    <% if (user) { %>
+      <a class="loan-topbar__account" href="<%= user.role === 'admin' ? '/admin/dashboard' : '/my-loans' %>">
+        <span class="loan-topbar__avatar"><%= user.name.slice(0, 2).toUpperCase() %></span>
+        <span><%= user.name %></span>
+      </a>
+    <% } else { %>
+      <a class="loan-topbar__account" href="/auth">Đăng nhập</a>
+    <% } %>
+  </header>
+
+  <div class="loan-page__content">
+    <div class="loan-page__header">
+      <h1>Sách của <em>bạn</em></h1>
+    </div>
+
+    <div class="loan-summary" aria-label="Tóm tắt việc mượn sách">
+      <article class="loan-summary__card loan-summary__card--active">
+        <span>Đang mượn</span>
+        <p><strong>2</strong><span>/ 5 cuốn</span></p>
+      </article>
+      <article class="loan-summary__card loan-summary__card--due">
+        <span>Sắp đến hạn</span>
+        <p><strong>1</strong><span>còn 2 ngày</span></p>
+      </article>
+      <article class="loan-summary__card loan-summary__card--fine">
+        <span>Tiền phạt</span>
+        <p><strong>6.000đ</strong></p>
+      </article>
+    </div>
+
+    <nav class="loan-tabs" aria-label="Danh sách mượn sách">
+      <a class="loan-tabs__link <%= activeTab === 'all' ? 'is-active' : '' %>" href="/my-loans?tab=all" <%= activeTab === 'all' ? 'aria-current="page"' : '' %>>Tất Cả</a>
+      <a class="loan-tabs__link <%= activeTab === 'active' ? 'is-active' : '' %>" href="/my-loans?tab=active" <%= activeTab === 'active' ? 'aria-current="page"' : '' %>>Đang mượn</a>
+      <a class="loan-tabs__link <%= activeTab === 'history' ? 'is-active' : '' %>" href="/my-loans?tab=history" <%= activeTab === 'history' ? 'aria-current="page"' : '' %>>Lịch sử</a>
+      <a class="loan-tabs__link <%= activeTab === 'reserved' ? 'is-active' : '' %>" href="/my-loans?tab=reserved" <%= activeTab === 'reserved' ? 'aria-current="page"' : '' %>>Đặt trước</a>
+    </nav>
+
+    <div class="loan-list">
+      <% if (loans.length) { %>
+        <% loans.forEach(function (loan) { %>
+          <article class="loan-item loan-item--<%= loan.status %>">
+            <div class="loan-item__cover loan-item__cover--<%= loan.accent %>" aria-hidden="true"></div>
+            <div class="loan-item__body">
+              <h2><%= loan.title %></h2>
+              <p class="loan-item__meta">
+                Phiếu <%= loan.receipt %> · Mượn <%= loan.borrowedAt %> ·
+                <%= loan.returnedAt ? 'Đã trả ' + loan.returnedAt : 'Hạn ' + loan.dueAt %>
+              </p>
+            </div>
+            <div class="loan-item__status">
+              <strong><%= loan.statusText %></strong>
+              <% if (loan.note) { %><span><%= loan.note %></span><% } %>
+            </div>
+          </article>
+        <% }); %>
+      <% } else { %>
+        <p class="loan-list__empty">
+          <%= activeTab === 'reserved' ? 'Bạn chưa có sách đặt trước.' : 'Chưa có lịch sử mượn sách.' %>
+        </p>
+      <% } %>
+    </div>
+
+    <p class="loan-page__note">
+      Viền đỏ: quá hạn. Viền xanh: đã trả. Tiền phạt được tính tự động từ số ngày quá hạn.
+      Mang sách đến quầy thủ thư để trả.
+    </p>
+  </div>
+</section>

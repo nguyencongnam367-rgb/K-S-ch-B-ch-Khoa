@@ -1,1 +1,21 @@
-<!-- TODO: Add the book search component. -->
+<form class="book-search" data-search-form>
+  <label class="sr-only" for="book-search-input">Tìm kiếm sách</label>
+  <span class="book-search__icon" aria-hidden="true">⌕</span>
+  <input
+    id="book-search-input"
+    class="input input--search"
+    type="search"
+    name="q"
+    placeholder="Tìm theo tên, tác giả, thể loại"
+    aria-label="Tìm kiếm sách"
+  >
+  <select class="input input--select" name="category" aria-label="Chọn thể loại">
+    <option value="all">Tất cả</option>
+    <option value="Văn học">Văn học</option>
+    <option value="Công nghệ">Công nghệ</option>
+    <option value="Kinh doanh">Kinh doanh</option>
+    <option value="Khoa học">Khoa học</option>
+    <option value="Thiếu nhi">Thiếu nhi</option>
+  </select>
+  <button class="button button--primary" type="submit">Tìm kiếm</button>
+</form>

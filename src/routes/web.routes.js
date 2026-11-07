@@ -1,11 +1,13 @@
 const express = require('express');
-const { renderAuth, renderHome } = require('../controllers/web/page.controller');
+const { renderAuth, renderHome, renderMyLoans, renderBookDetail } = require('../controllers/web/page.controller');
 const { loadUser, requireAdmin } = require('../middlewares/auth');
 const { countUsers } = require('../services/auth.service');
 
 const router = express.Router();
 
 router.get('/', loadUser, renderHome);
+router.get('/my-loans', loadUser, renderMyLoans);
+router.get('/books/:id', loadUser, renderBookDetail);
 router.get(['/auth', '/dang-nhap'], renderAuth);
 router.get(['/admin', '/admin/dashboard'], requireAdmin, (req, res) => {
   res.render('layouts/main', {

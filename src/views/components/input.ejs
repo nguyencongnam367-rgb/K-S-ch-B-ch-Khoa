@@ -3,6 +3,7 @@
   name="<%= name %>"
   class="form-input<%= typeof className === 'string' && className ? ' ' + className : '' %>"
   type="<%= typeof type === 'string' ? type : 'text' %>"
+  <% if (typeof value !== 'undefined') { %>value="<%= value %>"<% } %>
   <% if (typeof autocomplete === 'string') { %>autocomplete="<%= autocomplete %>"<% } %>
   <% if (typeof placeholder === 'string') { %>placeholder="<%= placeholder %>"<% } %>
   <% if (typeof minlength === 'number') { %>minlength="<%= minlength %>"<% } %>

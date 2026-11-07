@@ -8,12 +8,12 @@
     <a href="/#kham-pha">Khám phá</a>
     <a href="/#the-loai">Thể loại</a>
     <a href="/#sach-moi">Sách mới</a>
-    <a href="/#muon-sach">Mượn của tôi</a>
+    <a href="/my-loans">Mượn của tôi</a>
   </nav>
 
   <% if (user) { %>
     <div class="header-account">
-      <a class="header-greeting" href="<%= user.role === 'admin' ? '/admin/dashboard' : '/#muon-sach' %>"><%= user.name %></a>
+      <a class="header-greeting" href="<%= user.role === 'admin' ? '/admin/dashboard' : '/my-loans' %>"><%= user.name %></a>
       <form action="/api/auth/logout" method="post">
         <button class="header-login header-logout" type="submit">Đăng xuất</button>
       </form>

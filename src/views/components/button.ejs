@@ -1,6 +1,6 @@
 <%
   const buttonType = ['button', 'submit', 'reset'].includes(typeof type === 'string' ? type : '') ? type : 'button';
-  const buttonVariant = ['primary', 'secondary', 'danger'].includes(typeof variant === 'string' ? variant : '') ? variant : 'primary';
+  const buttonVariant = ['primary', 'secondary', 'danger', 'ghost'].includes(typeof variant === 'string' ? variant : '') ? variant : 'primary';
   const buttonSize = ['small', 'large'].includes(typeof size === 'string' ? size : '') ? size : '';
   const buttonClasses = ['button', `button--${buttonVariant}`];
   if (buttonSize) buttonClasses.push(`button--${buttonSize}`);
