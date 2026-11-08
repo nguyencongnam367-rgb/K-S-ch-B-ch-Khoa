@@ -14,6 +14,7 @@
   <% if (typeof value !== 'undefined') { %>value="<%= value %>"<% } %>
   <% if (typeof disabled !== 'undefined' && disabled) { %>disabled<% } %>
   <% if (typeof ariaLabel === 'string' && ariaLabel) { %>aria-label="<%= ariaLabel %>"<% } %>
+  <% if (typeof attrs === 'string' && attrs) { %><%- attrs %><% } %>
 >
   <%= typeof label === 'string' ? label : '' %>
 </button>

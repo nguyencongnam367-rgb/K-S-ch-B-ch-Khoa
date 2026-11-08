@@ -1,1 +1,127 @@
-/* TODO: Style the administrator sidebar. */
+.admin-sidebar {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+
+.admin-brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 22px 8px;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+  font-size: 11px;
+  text-decoration: none;
+}
+
+.admin-brand__mark {
+  color: var(--color-red);
+  font-family: var(--font-editorial);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+  color: #6f695b;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.admin-nav__link svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.admin-nav__link:hover {
+  color: var(--color-emerald);
+}
+
+.admin-nav__link.is-active {
+  border-color: var(--admin-line);
+  color: var(--color-ok);
+  background: var(--admin-sheet);
+}
+
+.admin-nav__link--alert,
+.admin-nav__link--alert:hover,
+.admin-nav__link--alert.is-active {
+  color: var(--color-alert);
+}
+
+.admin-nav__count {
+  margin-left: auto;
+  font-size: 11px;
+}
+
+.admin-sidebar__account {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+  padding: 24px 14px 0 8px;
+  font-family: var(--font-ui);
+}
+
+.admin-sidebar__name {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.admin-sidebar__account small {
+  color: var(--color-muted);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.admin-sidebar__account form {
+  margin: 10px 0 0;
+}
+
+@media (max-width: 860px) {
+  .admin-sidebar {
+    padding: 0 0 10px;
+  }
+
+  .admin-brand {
+    margin-bottom: 10px;
+  }
+
+  .admin-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 6px;
+  }
+
+  .admin-nav__link {
+    border: 1px solid var(--admin-line);
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .admin-sidebar__account {
+    display: none;
+  }
+}

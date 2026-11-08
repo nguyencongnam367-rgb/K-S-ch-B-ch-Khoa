@@ -1,1 +1,47 @@
-<!-- TODO: Add the administrator sidebar. -->
+<%
+  const current = typeof activeNav === 'string' ? activeNav : '';
+  const lateCount = typeof overdueCount === 'number' ? overdueCount : 0;
+  const navItems = [
+    { key: 'dashboard', href: '/admin/dashboard', label: 'Tổng quan', icon: 'grid' },
+    { key: 'books', href: '/admin/books', label: 'Sách', icon: 'book' },
+    { key: 'taxonomy', href: '/admin/taxonomy', label: 'Thể loại, tác giả', icon: 'tag' },
+    { key: 'loan-create', href: '/admin/loans/new', label: 'Lập phiếu, trả sách', icon: 'file' },
+    { key: 'loans', href: '/admin/loans', label: 'Lịch sử mượn', icon: 'history' },
+    { key: 'overdue', href: '/admin/overdue', label: 'Quá hạn', icon: 'alarm', alert: true }
+  ];
+  const icons = {
+    grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+    book: '<path d="M5 4h13a1 1 0 0 1 1 1v14H6a1 1 0 0 0-1 1z"/><path d="M5 20V4"/>',
+    tag: '<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="8.5" r="1.2"/>',
+    file: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/>',
+    history: '<path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/><path d="M12 8v4l3 2"/>',
+    alarm: '<circle cx="12" cy="13" r="7"/><path d="M12 9v4l2 2M5 4 3 6M19 4l2 2"/>'
+  };
+%>
+<aside class="admin-sidebar">
+  <a class="admin-brand" href="/" aria-label="Về trang chủ thư viện">
+    <span class="admin-brand__mark">BK</span>
+    <span>Thủ thư</span>
+  </a>
+
+  <nav class="admin-nav" aria-label="Quản trị">
+    <% navItems.forEach(function (item) { %>
+      <a class="admin-nav__link<%= current === item.key ? ' is-active' : '' %><%= item.alert ? ' admin-nav__link--alert' : '' %>"
+         href="<%= item.href %>"<%- current === item.key ? ' aria-current="page"' : '' %>>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><%- icons[item.icon] %></svg>
+        <span><%= item.label %></span>
+        <% if (item.alert && lateCount > 0) { %><span class="admin-nav__count"><%= lateCount %></span><% } %>
+      </a>
+    <% }); %>
+  </nav>
+
+  <% if (typeof user !== 'undefined' && user) { %>
+    <div class="admin-sidebar__account">
+      <span class="admin-sidebar__name"><%= user.name %></span>
+      <small><%= user.email %></small>
+      <form action="/api/auth/logout" method="post">
+        <%- include('button', { type: 'submit', variant: 'ghost', size: 'small', label: 'Đăng xuất' }) %>
+      </form>
+    </div>
+  <% } %>
+</aside>

@@ -1,1 +1,33 @@
-<!-- TODO: Add overdue loan management page. -->
+<div data-filter-scope>
+  <%- include('../../components/page-heading', {
+    titleBefore: 'Phiếu',
+    titleEm: 'quá hạn',
+    actionLabel: 'Gửi nhắc tất cả',
+    actionAttrs: 'data-remind-all'
+  }) %>
+
+  <section class="summary-cards" aria-label="Tóm tắt quá hạn">
+    <div class="panel summary-card">
+      <span>Phiếu quá hạn</span>
+      <strong><%= loans.length %></strong>
+    </div>
+    <div class="panel summary-card">
+      <span>Tiền phạt tạm tính</span>
+      <strong><%= totalFine %></strong>
+    </div>
+  </section>
+
+  <%- include('../../components/search-row', { id: 'overdue-search', placeholder: 'Tìm mã phiếu, tên độc giả', inputAttrs: 'data-filter-input' }) %>
+
+  <div class="loan-list">
+    <div class="loan-list__head" aria-hidden="true">
+      <span>MÃ PHIẾU</span><span>ĐỘC GIẢ</span><span>SÁCH</span><span>HẠN TRẢ</span><span>QUÁ HẠN</span><span></span>
+    </div>
+    <% loans.forEach(function (loan) { %>
+      <%- include('../../components/loan-row', { loan: loan }) %>
+    <% }); %>
+    <p class="empty-state" data-filter-empty hidden>Không có phiếu quá hạn nào phù hợp.</p>
+  </div>
+
+  <p class="overdue-note">Phiếu quá hạn được hệ thống tự đánh dấu mỗi ngày. Tiền phạt tính từ số ngày quá hạn.</p>
+</div>

@@ -1,1 +1,241 @@
-/* TODO: Style the administrator layout. */
+:root {
+  --admin-bg: #efeadf;
+  --admin-sheet: #fbf9f3;
+  --admin-soft: #f3eee0;
+  --admin-line: #e3dcc9;
+  --admin-line-strong: #cfc6b0;
+  --color-ok: #1f6b45;
+  --color-alert: #c8322b;
+  --font-ui: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.admin-body {
+  background: var(--admin-bg);
+}
+
+.admin-shell {
+  display: grid;
+  min-height: 100vh;
+  grid-template-columns: 210px minmax(0, 1fr);
+  padding: 16px 0 16px 16px;
+}
+
+.admin-main {
+  min-width: 0;
+}
+
+.admin-sheet {
+  min-height: calc(100vh - 32px);
+  padding: 26px 30px 32px;
+  border: 1px solid var(--admin-line);
+  border-right: 0;
+  border-radius: 26px 0 0 26px;
+  background: var(--admin-sheet);
+}
+
+/* Biểu mẫu dùng chung */
+.field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field__label {
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+select.form-input {
+  padding-right: 40px;
+  appearance: none;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #6d675f 50%),
+    linear-gradient(135deg, #6d675f 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+.form-input[readonly] {
+  color: var(--color-ok);
+  cursor: default;
+}
+
+/* Khung viền dùng chung */
+.panel {
+  padding: 16px 18px;
+  border: 1px solid var(--admin-line);
+  border-radius: 20px;
+  background: var(--admin-sheet);
+}
+
+.panel__title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Bảng dạng lưới: mỗi trang đặt grid-template-columns riêng */
+.data-head,
+.data-row {
+  display: grid;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 4px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.data-head {
+  padding-top: 14px;
+  padding-bottom: 6px;
+  color: var(--color-muted);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.data-row {
+  border-top: 1px solid var(--admin-line);
+}
+
+.data-row__title {
+  font-family: var(--font-editorial);
+  font-size: 14px;
+}
+
+.data-row__muted {
+  color: var(--color-muted);
+}
+
+.thumb {
+  display: block;
+  width: 26px;
+  height: 38px;
+  border-radius: 2px;
+  background-color: #d9cdb0;
+  object-fit: cover;
+}
+
+.row-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.row-action {
+  padding: 0;
+  border: 0;
+  color: var(--color-muted);
+  background: none;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+}
+
+.row-action:hover {
+  color: var(--color-ink);
+  text-decoration-color: currentColor;
+}
+
+.row-action--danger {
+  color: var(--color-alert);
+}
+
+.row-action--danger:hover {
+  color: var(--color-alert);
+}
+
+.row-action:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+  text-decoration: none;
+}
+
+.empty-state {
+  margin: 0;
+  padding: 30px 0;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  text-align: center;
+}
+
+.notice {
+  margin: 16px 0 0;
+  padding: 10px 14px;
+  border: 1px solid rgba(200, 50, 43, 0.45);
+  border-radius: 14px;
+  color: #8f2822;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+  font-size: 11px;
+}
+
+.pagination__pages {
+  display: flex;
+  gap: 6px;
+}
+
+@media (max-width: 860px) {
+  .admin-shell {
+    display: block;
+    padding: 10px;
+  }
+
+  .admin-sheet {
+    min-height: 0;
+    padding: 20px 16px 24px;
+    border-right: 1px solid var(--admin-line);
+    border-radius: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .data-head {
+    display: none;
+  }
+
+  .data-row {
+    grid-template-columns: 1fr !important;
+    gap: 4px;
+  }
+
+  .row-actions {
+    justify-content: flex-start;
+    margin-top: 4px;
+  }
+}

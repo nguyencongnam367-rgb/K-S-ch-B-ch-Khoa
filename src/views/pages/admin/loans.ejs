@@ -1,1 +1,27 @@
-<!-- TODO: Add loan history management page. -->
+<div data-filter-scope>
+  <%- include('../../components/page-heading', { titleBefore: 'Lịch sử', titleEm: 'mượn', actionLabel: '+ Lập phiếu', actionHref: '/admin/loans/new' }) %>
+
+  <div class="loan-filters">
+    <%- include('../../components/search-row', { id: 'loan-search', placeholder: 'Tìm mã phiếu, tên độc giả', inputAttrs: 'data-filter-input' }) %>
+    <%- include('../../components/filter-chips', { groupName: 'status', groupLabel: 'Lọc theo trạng thái', chips: chips, active: 'all' }) %>
+  </div>
+
+  <div class="loan-list">
+    <div class="loan-list__head" aria-hidden="true">
+      <span>MÃ PHIẾU</span><span>ĐỘC GIẢ</span><span>SÁCH</span><span>HẠN TRẢ</span><span>TRẠNG THÁI</span><span></span>
+    </div>
+    <% loans.forEach(function (loan) { %>
+      <%- include('../../components/loan-row', { loan: loan }) %>
+    <% }); %>
+    <p class="empty-state" data-filter-empty hidden>Không có phiếu nào phù hợp.</p>
+  </div>
+
+  <nav class="pagination" aria-label="Phân trang">
+    <span data-filter-count="phiếu">Hiển thị <%= loans.length %> phiếu</span>
+    <div class="pagination__pages">
+      <a class="chip is-active" href="?page=1" aria-current="page">1</a>
+      <a class="chip" href="?page=2">2</a>
+      <a class="chip" href="?page=2" aria-label="Trang sau">›</a>
+    </div>
+  </nav>
+</div>

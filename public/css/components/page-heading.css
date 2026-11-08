@@ -1,0 +1,27 @@
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.page-heading h1 {
+  margin: 0;
+  font-family: var(--font-editorial);
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 400;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+}
+
+.page-heading h1 em {
+  color: var(--color-red);
+}
+
+.page-heading__meta {
+  margin: 6px 0 0;
+  color: var(--color-muted);
+  font-family: var(--font-ui);
+  font-size: 11px;
+}

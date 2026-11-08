@@ -1,0 +1,124 @@
+.loan-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.loan-list__head,
+.loan-row {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr) minmax(0, 1.2fr) 52px 112px 96px;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.loan-list__head {
+  padding: 8px 17px 0;
+  color: var(--color-muted);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+.loan-row {
+  padding: 12px 16px;
+  border: 1px solid var(--admin-line);
+  border-radius: 16px;
+  color: var(--color-ink);
+  background: var(--admin-sheet);
+}
+
+/* Chưa trả quá hạn: viền đỏ. Đã trả: viền xanh. Còn hạn: viền thường */
+.loan-row--overdue {
+  padding: 11.5px 15.5px;
+  border: 1.5px solid var(--color-alert);
+}
+
+.loan-row--returned {
+  padding: 11.5px 15.5px;
+  border: 1.5px solid var(--color-ok);
+}
+
+.loan-row__code {
+  font-weight: 600;
+}
+
+.loan-row__reader,
+.loan-row__status {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.loan-row__reader small {
+  color: var(--color-muted);
+  font-size: 10px;
+}
+
+.loan-row__state {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.loan-row--overdue .loan-row__state,
+.loan-row__fine {
+  color: var(--color-alert);
+}
+
+.loan-row__fine {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.loan-row__action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loan-row__action small {
+  color: var(--color-muted);
+  font-size: 11px;
+}
+
+.loan-row .button {
+  min-height: 34px;
+  padding: 6px 14px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+}
+
+.loan-row .button--ghost {
+  border-color: var(--admin-line-strong);
+  color: var(--color-ink);
+  background: var(--admin-sheet);
+}
+
+.loan-row .button--ghost.is-alert {
+  border-color: var(--color-alert);
+  color: var(--color-alert);
+}
+
+.loan-row .button--ghost:hover:not(:disabled) {
+  background: rgba(26, 26, 26, 0.04);
+}
+
+.loan-row .button--ghost.is-alert:hover:not(:disabled) {
+  background: rgba(200, 50, 43, 0.07);
+}
+
+@media (max-width: 900px) {
+  .loan-list__head {
+    display: none;
+  }
+
+  .loan-row {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 8px;
+  }
+
+  .loan-row__action {
+    justify-content: flex-start;
+  }
+}

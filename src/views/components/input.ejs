@@ -9,4 +9,5 @@
   <% if (typeof minlength === 'number') { %>minlength="<%= minlength %>"<% } %>
   <% if (typeof maxlength === 'number') { %>maxlength="<%= maxlength %>"<% } %>
   <% if (typeof required === 'boolean' && required) { %>required<% } %>
+  <% if (typeof attrs === 'string' && attrs) { %><%- attrs %><% } %>
 >

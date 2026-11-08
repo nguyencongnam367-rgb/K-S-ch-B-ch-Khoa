@@ -1,1 +1,96 @@
-/* TODO: Style book management. */
+.data-row--books,
+.data-head.data-row--books {
+  grid-template-columns: 30px minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 0.8fr) 84px 84px;
+}
+
+.book-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 12px 0 2px;
+}
+
+.book-filters .form-input {
+  width: auto;
+  min-width: 180px;
+  height: 40px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+/* Số lượng: chỉ đổi màu chữ, không có nền */
+.qty {
+  font-weight: 500;
+}
+
+.qty--ok {
+  color: var(--color-ok);
+}
+
+.qty--none {
+  color: var(--color-alert);
+}
+
+.book-form {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+  padding: 18px;
+  border: 1px dashed var(--admin-line-strong);
+  border-radius: 20px;
+}
+
+.dropzone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  aspect-ratio: 2 / 3;
+  padding: 10px;
+  border: 1px dashed var(--admin-line-strong);
+  border-radius: 6px;
+  color: var(--color-muted);
+  background: var(--admin-soft) center / cover no-repeat;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.dropzone:hover,
+.dropzone.is-dragover {
+  border-color: var(--color-ok);
+}
+
+.dropzone__icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--color-ok);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dropzone.has-image .dropzone__hint,
+.dropzone.has-image .dropzone__icon {
+  display: none;
+}
+
+.dropzone.has-error {
+  border-color: var(--color-alert);
+  color: var(--color-alert);
+}
+
+@media (max-width: 700px) {
+  .book-form {
+    grid-template-columns: 1fr;
+  }
+
+  .dropzone {
+    max-width: 140px;
+  }
+}

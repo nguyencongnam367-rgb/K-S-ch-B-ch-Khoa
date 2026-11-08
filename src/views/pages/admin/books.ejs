@@ -1,1 +1,96 @@
-<!-- TODO: Add book management page. -->
+<div data-filter-scope>
+  <%- include('../../components/page-heading', {
+    titleBefore: 'Quản lý',
+    titleEm: 'sách',
+    actionLabel: '+ Thêm sách',
+    actionAttrs: 'data-toggle="#book-form" aria-controls="book-form" aria-expanded="false"'
+  }) %>
+
+  <%# Biểu mẫu thêm sách đặt ở đầu trang, mở bằng nút "+ Thêm sách" %>
+  <form class="book-form" id="book-form" action="/api/v1/books" method="post" enctype="multipart/form-data" hidden>
+    <label class="dropzone" for="book-cover">
+      <svg class="dropzone__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V5m0 0-4 4m4-4 4 4M5 19h14"/></svg>
+      <span class="dropzone__hint" data-default-hint="Kéo ảnh bìa vào đây (JPG, PNG, tối đa 2 MB)">Kéo ảnh bìa vào đây (JPG, PNG, tối đa 2 MB)</span>
+      <input id="book-cover" type="file" name="cover" accept="image/jpeg,image/png" hidden data-cover-input>
+    </label>
+
+    <div class="book-form__main">
+      <div class="form-grid">
+        <label class="field">
+          <span class="field__label">Tên sách</span>
+          <%- include('../../components/input', { id: 'book-title', name: 'title', placeholder: 'Nhập tên sách', required: true }) %>
+        </label>
+        <label class="field">
+          <span class="field__label">Thể loại</span>
+          <select class="form-input" name="category" required>
+            <option value="">Chọn thể loại</option>
+            <% categories.forEach(function (item) { %><option value="<%= item.name %>"><%= item.name %></option><% }); %>
+          </select>
+        </label>
+        <label class="field">
+          <span class="field__label">ISBN</span>
+          <%- include('../../components/input', { id: 'book-isbn', name: 'isbn', placeholder: '978-604-…', required: true }) %>
+        </label>
+        <label class="field">
+          <span class="field__label">Tổng số bản</span>
+          <%- include('../../components/input', { id: 'book-copies', name: 'totalCopies', type: 'number', value: 1, required: true, attrs: 'min="1" inputmode="numeric"' }) %>
+        </label>
+        <label class="field">
+          <span class="field__label">Tác giả</span>
+          <select class="form-input" name="author" required>
+            <option value="">Chọn tác giả</option>
+            <% authors.forEach(function (item) { %><option value="<%= item.name %>"><%= item.name %></option><% }); %>
+          </select>
+        </label>
+      </div>
+      <div class="form-actions">
+        <%- include('../../components/button', { type: 'submit', variant: 'primary', label: 'Lưu sách' }) %>
+        <%- include('../../components/button', { type: 'button', variant: 'ghost', label: 'Hủy', attrs: 'data-toggle="#book-form"' }) %>
+      </div>
+    </div>
+  </form>
+
+  <%- include('../../components/search-row', { id: 'book-search', placeholder: 'Tìm theo tên, tác giả, ISBN', inputAttrs: 'data-filter-input' }) %>
+
+  <div class="book-filters">
+    <select class="form-input" aria-label="Lọc theo thể loại" data-filter-select="category">
+      <option value="">Tất cả thể loại</option>
+      <% categories.forEach(function (item) { %><option value="<%= item.name %>"><%= item.name %></option><% }); %>
+    </select>
+    <select class="form-input" aria-label="Lọc theo số lượng" data-filter-select="stock">
+      <option value="">Tất cả số lượng</option>
+      <option value="in">Còn sách</option>
+      <option value="out">Hết sách</option>
+    </select>
+  </div>
+
+  <div class="data-head data-row--books" aria-hidden="true">
+    <span></span><span>TÊN SÁCH</span><span>TÁC GIẢ</span><span>THỂ LOẠI</span><span>SỐ LƯỢNG</span><span></span>
+  </div>
+  <% books.forEach(function (book) { %>
+    <div class="data-row data-row--books" data-filter-item
+         data-search="<%= book.title %> <%= book.author %> <%= book.isbn %>"
+         data-category="<%= book.category %>" data-stock="<%= book.available > 0 ? 'in' : 'out' %>">
+      <span class="thumb" style="background-color: <%= book.color %>"></span>
+      <span class="data-row__title"><%= book.title %></span>
+      <span><%= book.author %></span>
+      <span><%= book.category %></span>
+      <span class="qty qty--<%= book.available > 0 ? 'ok' : 'none' %>"><%= book.available %> / <%= book.total %></span>
+      <div class="row-actions">
+        <button class="row-action" type="button">Sửa</button>
+        <button class="row-action row-action--danger" type="button">Xóa</button>
+      </div>
+    </div>
+  <% }); %>
+  <p class="empty-state" data-filter-empty hidden>Không tìm thấy sách phù hợp.</p>
+
+  <nav class="pagination" aria-label="Phân trang">
+    <span data-filter-count="đầu sách">Hiển thị <%= books.length %> đầu sách</span>
+    <div class="pagination__pages">
+      <a class="chip is-active" href="?page=1" aria-current="page">1</a>
+      <a class="chip" href="?page=2">2</a>
+      <a class="chip" href="?page=3">3</a>
+      <a class="chip" href="?page=2" aria-label="Trang sau">›</a>
+    </div>
+  </nav>
+</div>

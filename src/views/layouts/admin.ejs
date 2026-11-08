@@ -1,1 +1,40 @@
-<!-- TODO: Add the administrator page layout. -->
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#efeadf">
+    <title><%= title %> | Quản trị Thư viện BK</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components/button.css">
+    <link rel="stylesheet" href="/css/components/input.css">
+    <link rel="stylesheet" href="/css/layouts/admin.css">
+    <link rel="stylesheet" href="/css/components/admin-sidebar.css">
+    <link rel="stylesheet" href="/css/components/page-heading.css">
+    <link rel="stylesheet" href="/css/components/search-row.css">
+    <link rel="stylesheet" href="/css/components/filter-chips.css">
+    <link rel="stylesheet" href="/css/components/tabs.css">
+    <link rel="stylesheet" href="/css/components/loan-row.css">
+    <% if (typeof pageStyles !== "undefined" && pageStyles) { pageStyles.forEach(function (style) { %>
+      <link rel="stylesheet" href="<%= style %>">
+    <% }); } %>
+  </head>
+  <body class="admin-body <%= typeof pageClass === "string" ? pageClass : "" %>">
+    <div class="admin-shell">
+      <%- include("../components/admin-sidebar") %>
+      <main class="admin-main">
+        <div class="admin-sheet">
+          <%- include("../" + page) %>
+        </div>
+      </main>
+    </div>
+    <script src="/js/admin.js" defer></script>
+    <% if (typeof pageScripts !== "undefined" && pageScripts) { pageScripts.forEach(function (script) { %>
+      <script src="<%= script %>" defer></script>
+    <% }); } %>
+  </body>
+</html>

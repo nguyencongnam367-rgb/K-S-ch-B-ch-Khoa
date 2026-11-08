@@ -1,1 +1,25 @@
-/* TODO: Style category and author management. */
+.taxo-form {
+  margin: 16px 0 14px;
+  padding: 14px 16px;
+  border: 1px dashed var(--admin-line-strong);
+  border-radius: 18px;
+}
+
+.taxo-form__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr) auto auto;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.data-row--taxo,
+.data-head.data-row--taxo {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.6fr) 72px 100px;
+}
+
+@media (max-width: 760px) {
+  .taxo-form__row {
+    grid-template-columns: 1fr 1fr;
+  }
+}

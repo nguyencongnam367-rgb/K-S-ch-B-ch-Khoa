@@ -1,45 +1,50 @@
-<section class="dashboard">
-  <header class="dashboard-header">
-    <a class="dashboard-brand" href="/">
-      <span class="dashboard-brand-mark">BK</span>
-      <span>Thư viện <small>QUẢN TRỊ</small></span>
-    </a>
-    <form action="/api/auth/logout" method="post">
-      <button class="dashboard-logout" type="submit">Đăng xuất</button>
-    </form>
-  </header>
+<%- include('../../components/page-heading', { titleBefore: 'Tổng quan', titleEm: monthLabel, meta: todayLabel }) %>
 
-  <main class="dashboard-content">
-    <p class="dashboard-eyebrow">KHÔNG GIAN QUẢN TRỊ</p>
-    <h1>Xin chào, <em><%= user.name %></em></h1>
-    <p class="dashboard-intro">Chào mừng bạn trở lại. Đây là tổng quan tài khoản thư viện.</p>
+<section class="stat-grid" aria-label="Thống kê">
+  <% stats.forEach(function (stat, index) { %>
+    <%- include('../../components/stat-card', {
+      icon: String(index + 1).padStart(2, '0'),
+      title: stat.title,
+      value: stat.value,
+      detail: stat.detail,
+      variant: stat.variant
+    }) %>
+  <% }); %>
+</section>
 
-    <section class="dashboard-cards" aria-label="Thống kê">
-      <%- include('../../components/stat-card', {
-        icon: '01',
-        title: 'Độc giả',
-        value: readerCount,
-        detail: 'Tài khoản đã đăng ký'
-      }) %>
-      <%- include('../../components/stat-card', {
-        icon: '02',
-        title: 'Vai trò của bạn',
-        value: 'Admin',
-        detail: user.email,
-        variant: 'green'
-      }) %>
-      <%- include('../../components/stat-card', {
-        icon: '03',
-        title: 'Trạng thái',
-        value: 'Đang hoạt động',
-        detail: 'Quyền quản trị thư viện',
-        variant: 'gold'
-      }) %>
-    </section>
+<div class="dashboard-panels">
+  <section class="panel" aria-labelledby="top-books-title">
+    <h2 class="panel__title" id="top-books-title">Sách mượn nhiều nhất</h2>
+    <ol class="bar-list">
+      <% topBooks.forEach(function (book) { %>
+        <li class="bar-list__item">
+          <span><%= book.title %></span>
+          <span class="bar-list__track"><i style="--w: <%= book.percent %>%"></i></span>
+          <b><%= book.count %></b>
+        </li>
+      <% }); %>
+    </ol>
+  </section>
 
-    <section class="dashboard-welcome">
-      <span>GÓC THỦ THƯ</span>
-      <p>Quản lý thư viện bắt đầu từ những điều nhỏ: một cuốn sách được sắp đúng chỗ, một độc giả tìm đúng trang sách mình cần.</p>
-    </section>
-  </main>
+  <section class="panel" aria-labelledby="recent-late-title">
+    <div class="panel__head">
+      <h2 class="panel__title" id="recent-late-title">Quá hạn gần nhất</h2>
+      <a class="panel__link" href="/admin/overdue">Xem tất cả</a>
+    </div>
+    <ul class="late-list">
+      <% recentOverdue.forEach(function (loan) { %>
+        <li class="late-list__item">
+          <span><%= loan.reader %><small><%= loan.book %></small></span>
+          <strong><%= loan.daysLate %> ngày</strong>
+        </li>
+      <% }); %>
+    </ul>
+  </section>
+</div>
+
+<p class="dashboard-note">Hệ thống chạy mỗi ngày: chuyển phiếu sang quá hạn và gửi email nhắc trước hạn 2 ngày.</p>
+
+<section class="dashboard-welcome">
+  <span>GÓC THỦ THƯ</span>
+  <p>Quản lý thư viện bắt đầu từ những điều nhỏ: một cuốn sách được sắp đúng chỗ, một độc giả tìm đúng trang sách mình cần.</p>
 </section>

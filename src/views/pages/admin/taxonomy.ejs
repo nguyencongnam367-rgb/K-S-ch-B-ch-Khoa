@@ -1,1 +1,44 @@
-<!-- TODO: Add category and author management page. -->
+<%- include('../../components/page-heading', { titleBefore: 'Thể loại và', titleEm: 'tác giả' }) %>
+
+<%- include('../../components/tabs', {
+  tabsName: 'taxonomy',
+  activeTab: panels[0].key,
+  tabItems: panels.map(function (panel) { return { key: panel.key, label: panel.tabLabel, count: panel.rows.length }; })
+}) %>
+
+<% panels.forEach(function (panel, index) { %>
+  <section class="taxo-panel" id="panel-<%= panel.key %>" role="tabpanel" aria-labelledby="tab-<%= panel.key %>"
+           data-tab-panel="<%= panel.key %>" data-filter-scope<%- index ? ' hidden' : '' %>>
+
+    <%# Biểu mẫu thêm mới đặt ở đầu mỗi tab %>
+    <form class="taxo-form" action="/api/v1/<%= panel.key %>" method="post">
+      <span class="field__label"><%= panel.addLabel %></span>
+      <div class="taxo-form__row">
+        <%- include('../../components/input', { id: panel.key + '-name', name: 'name', placeholder: panel.namePlaceholder, required: true }) %>
+        <%- include('../../components/input', { id: panel.key + '-desc', name: 'description', placeholder: panel.descPlaceholder }) %>
+        <%- include('../../components/button', { type: 'submit', variant: 'primary', label: 'Lưu' }) %>
+        <%- include('../../components/button', { type: 'reset', variant: 'ghost', label: 'Hủy' }) %>
+      </div>
+    </form>
+
+    <%- include('../../components/search-row', { id: 'search-' + panel.key, placeholder: panel.searchPlaceholder, inputAttrs: 'data-filter-input' }) %>
+
+    <div class="data-head data-row--taxo" aria-hidden="true">
+      <span>TÊN</span><span><%= panel.descHead %></span><span>SỐ SÁCH</span><span></span>
+    </div>
+    <% panel.rows.forEach(function (row) { %>
+      <div class="data-row data-row--taxo" data-filter-item data-search="<%= row.name %> <%= row.description %>">
+        <span class="data-row__title"><%= row.name %></span>
+        <span class="data-row__muted"><%= row.description %></span>
+        <span><%= row.count %></span>
+        <div class="row-actions">
+          <button class="row-action" type="button">Sửa</button>
+          <button class="row-action row-action--danger" type="button"<%- row.count > 0 ? ' disabled title="Đang có sách, không thể xóa"' : '' %>>Xóa</button>
+        </div>
+      </div>
+    <% }); %>
+    <p class="empty-state" data-filter-empty hidden>Không có mục nào phù hợp.</p>
+  </section>
+<% }); %>
+
+<p class="notice">Không xóa được thể loại hoặc tác giả đang có sách. Nút Xóa chỉ bật khi số sách bằng 0.</p>

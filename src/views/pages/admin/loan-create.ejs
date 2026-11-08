@@ -1,1 +1,88 @@
-<!-- TODO: Add the loan creation and return page. -->
+<%- include('../../components/page-heading', { titleBefore: 'Lập phiếu,', titleEm: 'trả sách', meta: 'Thao tác tại quầy thủ thư' }) %>
+
+<div class="loan-desk">
+  <%# Trang trái: lập phiếu mượn %>
+  <form class="desk-panel" action="/api/v1/loans" method="post" aria-labelledby="issue-title">
+    <h2 id="issue-title">Lập <em>phiếu mượn</em></h2>
+
+    <div class="field">
+      <span class="field__label">Độc giả</span>
+      <%- include('../../components/search-row', { id: 'reader-search', placeholder: 'Tìm tên hoặc mã độc giả' }) %>
+      <div class="reader-card">
+        <span class="reader-card__avatar" aria-hidden="true"><%= issue.reader.initials %></span>
+        <span><%= issue.reader.name %> · <%= issue.reader.code %></span>
+        <span class="reader-card__meta">Đang giữ <%= issue.reader.holding %> / <%= issue.reader.limit %></span>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field__label">Thêm sách</span>
+      <%- include('../../components/search-row', { id: 'issue-book-search', placeholder: 'Quét ISBN hoặc gõ tên sách' }) %>
+      <ul class="picked-books">
+        <% issue.books.forEach(function (book) { %>
+          <li class="picked-book">
+            <span class="thumb" style="background-color: <%= book.color %>"></span>
+            <div>
+              <strong><%= book.title %></strong>
+              <small class="stock stock--<%= book.available > 0 ? 'ok' : 'none' %>">Còn <%= book.available %> bản</small>
+            </div>
+            <button class="row-action" type="button" data-remove aria-label="Bỏ <%= book.title %> khỏi phiếu">Bỏ</button>
+          </li>
+        <% }); %>
+      </ul>
+    </div>
+
+    <div class="date-pair">
+      <label class="field">
+        <span class="field__label">Ngày mượn</span>
+        <%- include('../../components/input', { id: 'borrow-date', name: 'borrowDate', value: issue.borrowDate, attrs: 'readonly' }) %>
+      </label>
+      <label class="field">
+        <span class="field__label">Hạn trả (tự tính)</span>
+        <%- include('../../components/input', { id: 'due-date', name: 'dueDate', value: issue.dueDate, attrs: 'readonly' }) %>
+      </label>
+    </div>
+
+    <ul class="check-list">
+      <% issue.checks.forEach(function (check) { %>
+        <li class="check check--<%= check.tone %>"><%= check.text %></li>
+      <% }); %>
+    </ul>
+
+    <%- include('../../components/button', { type: 'submit', variant: 'primary', className: 'desk-submit', label: 'Tạo phiếu mượn' }) %>
+  </form>
+
+  <%# Trang phải: trả sách và tính phạt %>
+  <form class="desk-panel" action="/api/v1/loans/<%= giveBack.code %>/return" method="post" data-api-method="PATCH" aria-labelledby="return-title">
+    <h2 id="return-title">Trả <em>sách</em></h2>
+
+    <div class="field">
+      <span class="field__label">Mã phiếu</span>
+      <%- include('../../components/search-row', { id: 'loan-code-search', placeholder: giveBack.code }) %>
+    </div>
+
+    <div class="loan-summary">
+      <span><%= giveBack.summary %></span>
+      <strong class="loan-summary__state"><%= giveBack.statusText %></strong>
+    </div>
+
+    <ul class="picked-books">
+      <% giveBack.books.forEach(function (book) { %>
+        <li class="picked-book">
+          <span class="thumb" style="background-color: <%= book.color %>"></span>
+          <div><strong><%= book.title %></strong><small><%= book.note %></small></div>
+        </li>
+      <% }); %>
+    </ul>
+
+    <dl class="fine-box">
+      <div><dt>Số ngày quá hạn</dt><dd><%= giveBack.daysLate %> ngày</dd></div>
+      <div><dt>Mức phạt cố định</dt><dd><%= giveBack.ratePerDay %></dd></div>
+      <div><dt>Hệ số giá trị sách</dt><dd><%= giveBack.valueFactor %></dd></div>
+      <div class="fine-box__total"><dt>Tiền phạt</dt><dd><%= giveBack.fine %></dd></div>
+    </dl>
+    <p class="desk-note">Máy chủ tự tính tiền phạt, thủ thư không nhập tay.</p>
+
+    <%- include('../../components/button', { type: 'submit', variant: 'secondary', className: 'desk-submit', label: 'Xác nhận trả sách' }) %>
+  </form>
+</div>
