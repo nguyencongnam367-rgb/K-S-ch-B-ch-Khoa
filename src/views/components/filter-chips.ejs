@@ -1,0 +1,13 @@
+<%# Nhóm nút lọc: groupName, chips [{ key, label, count?, tone? }], active (key đang chọn) %>
+<%
+  const chipList = Array.isArray(chips) ? chips : [];
+  const chipActive = typeof active === 'string' ? active : (chipList[0] ? chipList[0].key : '');
+%>
+<div class="chip-group" role="group" aria-label="<%= typeof groupLabel === 'string' ? groupLabel : 'Bộ lọc' %>" data-chip-group="<%= groupName %>">
+  <% chipList.forEach(function (chip) { %>
+    <button class="chip<%= chip.key === chipActive ? ' is-active' : '' %><%= chip.tone === 'danger' ? ' chip--danger' : '' %>"
+            type="button" data-value="<%= chip.key %>" aria-pressed="<%= chip.key === chipActive %>">
+      <%= chip.label %><% if (chip.count !== undefined) { %> <%= chip.count %><% } %>
+    </button>
+  <% }); %>
+</div>

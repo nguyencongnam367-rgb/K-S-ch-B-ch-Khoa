@@ -1,0 +1,15 @@
+:root {
+  color-scheme: light;
+  --color-paper: #f8f6f0;
+  --color-paper-deep: #eee9dc;
+  --color-ink: #1a1a1a;
+  --color-muted: #79756d;
+  --color-line: #e5e5e5;
+  --color-red: #c8322b;
+  --color-emerald: #1f3a2b;
+  --color-emerald-bright: #206847;
+  --color-gold: #d4af37;
+  --font-editorial: "Playfair Display", Georgia, "Times New Roman", serif;
+  --page-gutter: clamp(20px, 5vw, 72px);
+  --radius-card: 26px;
+}

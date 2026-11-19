@@ -1,0 +1,14 @@
+<%# Ô tìm kiếm một hàng riêng: id, placeholder, inputAttrs (ví dụ data-filter-input) %>
+<div class="search-row" role="search">
+  <label class="sr-only" for="<%= id %>"><%= placeholder %></label>
+  <%- include('input', {
+    id: id,
+    name: id,
+    type: 'search',
+    placeholder: placeholder,
+    autocomplete: 'off',
+    className: 'search-row__input',
+    attrs: typeof inputAttrs === 'string' ? inputAttrs : ''
+  }) %>
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
+</div>

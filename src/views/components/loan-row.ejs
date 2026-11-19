@@ -1,0 +1,23 @@
+<%# Một hàng phiếu mượn (dùng ở Lịch sử mượn và Quá hạn). Tham số: loan %>
+<article class="loan-row loan-row--<%= loan.status %>" data-filter-item data-tags="<%= loan.tags %>" data-search="<%= loan.searchText %>">
+  <strong class="loan-row__code"><%= loan.code %></strong>
+  <div class="loan-row__reader">
+    <span><%= loan.reader %></span>
+    <small><%= loan.readerCode %></small>
+  </div>
+  <span class="loan-row__book"><%= loan.book %></span>
+  <span class="loan-row__due"><%= loan.due %></span>
+  <div class="loan-row__status">
+    <strong class="loan-row__state"><%= loan.statusText %></strong>
+    <% if (loan.fineText) { %><small class="loan-row__fine"><%= loan.fineText %></small><% } %>
+  </div>
+  <div class="loan-row__action">
+    <% if (loan.status === 'overdue') { %>
+      <%- include('button', { type: 'button', variant: 'ghost', size: 'small', className: 'is-alert', label: 'Gửi nhắc', attrs: 'data-remind="' + loan.code + '"' }) %>
+    <% } else if (loan.status === 'borrowing') { %>
+      <%- include('button', { type: 'button', variant: 'ghost', size: 'small', label: 'Trả sách', attrs: 'data-return="' + loan.code + '"' }) %>
+    <% } else { %>
+      <small>Trả <%= loan.returnedAt %></small>
+    <% } %>
+  </div>
+</article>

@@ -1,0 +1,13 @@
+<input
+  id="<%= id %>"
+  name="<%= name %>"
+  class="form-input<%= typeof className === 'string' && className ? ' ' + className : '' %>"
+  type="<%= typeof type === 'string' ? type : 'text' %>"
+  <% if (typeof value !== 'undefined') { %>value="<%= value %>"<% } %>
+  <% if (typeof autocomplete === 'string') { %>autocomplete="<%= autocomplete %>"<% } %>
+  <% if (typeof placeholder === 'string') { %>placeholder="<%= placeholder %>"<% } %>
+  <% if (typeof minlength === 'number') { %>minlength="<%= minlength %>"<% } %>
+  <% if (typeof maxlength === 'number') { %>maxlength="<%= maxlength %>"<% } %>
+  <% if (typeof required === 'boolean' && required) { %>required<% } %>
+  <% if (typeof attrs === 'string' && attrs) { %><%- attrs %><% } %>
+>

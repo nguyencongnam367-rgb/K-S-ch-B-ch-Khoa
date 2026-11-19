@@ -1,0 +1,17 @@
+.home-page,
+.my-loans-page,
+.book-detail-page {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.home-page main,
+.my-loans-page main,
+.book-detail-page main {
+  flex: 1;
+}
+
+.home-placeholder {
+  min-height: 1px;
+}
