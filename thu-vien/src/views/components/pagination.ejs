@@ -1,0 +1,13 @@
+<%# Phân trang: pager { page, totalPages, total, links[{ label, href, active?, aria? }] }, noun (đơn vị: "phiếu", "đầu sách") %>
+<% if (pager && pager.totalPages > 1) { %>
+  <nav class="pagination" aria-label="Phân trang">
+    <span>Trang <%= pager.page %> / <%= pager.totalPages %> · <%= pager.total %> <%= typeof noun === 'string' ? noun : 'mục' %></span>
+    <div class="pagination__pages">
+      <% pager.links.forEach(function (link) { %>
+        <a class="chip<%= link.active ? ' is-active' : '' %>" href="<%= link.href %>"<%- link.active ? ' aria-current="page"' : '' %><%- link.aria ? ' aria-label="' + link.aria + '"' : '' %>><%= link.label %></a>
+      <% }); %>
+    </div>
+  </nav>
+<% } else if (pager) { %>
+  <p class="pagination"><span><%= pager.total %> <%= typeof noun === 'string' ? noun : 'mục' %></span></p>
+<% } %>

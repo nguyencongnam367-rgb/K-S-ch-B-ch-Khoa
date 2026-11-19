@@ -1,0 +1,40 @@
+.search-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px 0 4px;
+  border: 1px solid var(--admin-line-strong);
+  border-radius: 999px;
+  background: var(--admin-sheet);
+}
+
+.search-row:focus-within {
+  border-color: var(--color-ink);
+}
+
+.search-row .form-input {
+  height: 42px;
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+
+.search-row .form-input:focus {
+  border: 0;
+  box-shadow: none;
+}
+
+.search-row svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: var(--color-muted);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
