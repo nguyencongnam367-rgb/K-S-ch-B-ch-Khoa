@@ -1,0 +1,46 @@
+.field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field__label {
+  color: var(--color-muted);
+  font-size: 11px;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--admin-line-strong);
+  border-radius: 12px;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  font-size: 13px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.form-input::placeholder {
+  color: #999387;
+}
+
+.form-input:focus {
+  border-color: var(--color-emerald);
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(31, 107, 69, 0.12);
+}
+
+textarea.form-input {
+  min-height: 100px;
+  padding-top: 11px;
+  resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--color-emerald);
+}

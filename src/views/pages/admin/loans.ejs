@@ -1,0 +1,22 @@
+<%- include('../../components/page-heading', { titleBefore: 'Lịch sử', titleEm: 'mượn', actionLabel: '+ Lập phiếu', actionHref: '/admin/loans/new' }) %>
+
+<div class="loan-filters">
+  <%# Tìm kiếm ở hàng riêng; nút lọc là liên kết nên lọc đủ toàn bộ dữ liệu, không chỉ trang đang xem %>
+  <form method="get" action="/admin/loans">
+    <% if (activeStatus !== 'all') { %><input type="hidden" name="status" value="<%= activeStatus %>"><% } %>
+    <%- include('../../components/search-row', { id: 'loan-search', inputName: 'q', inputValue: query.q || '', placeholder: 'Tìm mã phiếu, tên độc giả' }) %>
+  </form>
+  <%- include('../../components/filter-chips', { groupName: 'status', groupLabel: 'Lọc theo trạng thái', chips: chips, active: activeStatus }) %>
+</div>
+
+<div class="loan-list">
+  <div class="loan-list__head" aria-hidden="true">
+    <span>MÃ PHIẾU</span><span>ĐỘC GIẢ</span><span>SÁCH</span><span>HẠN TRẢ</span><span>TRẠNG THÁI</span><span></span>
+  </div>
+  <% loans.forEach(function (loan) { %>
+    <%- include('../../components/loan-row', { loan: loan }) %>
+  <% }); %>
+  <% if (!loans.length) { %><p class="empty-state">Không có phiếu nào phù hợp.</p><% } %>
+</div>
+
+<%- include('../../components/pagination', { pager: pager, noun: 'phiếu' }) %>

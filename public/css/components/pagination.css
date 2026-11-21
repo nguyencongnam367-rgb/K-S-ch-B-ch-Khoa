@@ -1,0 +1,15 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 16px 0 0;
+  color: var(--color-muted, #79756d);
+  font-family: var(--font-ui, "Montserrat", system-ui, sans-serif);
+  font-size: 11px;
+}
+
+.pagination__pages {
+  display: flex;
+  gap: 6px;
+}

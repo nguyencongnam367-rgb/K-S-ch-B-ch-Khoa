@@ -1,0 +1,20 @@
+<%# Tiêu đề trang quản trị: titleBefore + titleEm (chữ đỏ nghiêng), meta, nút hành động (actionLabel + actionHref hoặc actionAttrs) %>
+<header class="page-heading">
+  <div>
+    <h1><%= titleBefore %> <em><%= titleEm %></em></h1>
+    <% if (typeof meta === 'string' && meta) { %><p class="page-heading__meta"><%= meta %></p><% } %>
+  </div>
+  <% if (typeof actionLabel === 'string' && actionLabel) { %>
+    <% if (typeof actionHref === 'string' && actionHref) { %>
+      <a class="button button--secondary button--small" href="<%= actionHref %>"><%= actionLabel %></a>
+    <% } else { %>
+      <%- include('button', {
+        type: 'button',
+        variant: 'secondary',
+        size: 'small',
+        label: actionLabel,
+        attrs: typeof actionAttrs === 'string' ? actionAttrs : ''
+      }) %>
+    <% } %>
+  <% } %>
+</header>

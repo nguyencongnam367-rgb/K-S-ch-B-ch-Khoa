@@ -1,0 +1,13 @@
+<%# Thẻ sách dùng ở trang chủ và danh sách sách. Tham số: book { id, title, accent, coverLines, cover, availability, available } %>
+<a class="library-book library-book--<%= book.accent %>" href="/books/<%= book.id %>">
+  <% if (book.cover) { %>
+    <div class="library-book__cover library-book__cover--image"><img src="<%= book.cover %>" alt="Bìa sách <%= book.title %>" loading="lazy"></div>
+  <% } else { %>
+    <div class="library-book__cover">
+      <span><%= book.coverLines[0] %><% if (book.coverLines[1]) { %><br><%= book.coverLines[1] %><% } %></span>
+    </div>
+  <% } %>
+  <h3><%= book.title %></h3>
+  <% if (typeof showDescription !== 'undefined' && showDescription && book.description) { %><p class="library-book__description"><%= book.description %></p><% } %>
+  <small class="<%= book.available ? '' : 'is-out' %>"><%= book.availability %></small>
+</a>

@@ -1,0 +1,30 @@
+/* Bổ sung cho book-detail.css: ảnh bìa thật và các liên kết lọc */
+.book-detail-cover--image {
+  display: block;
+  width: min(100%, 180px);
+  height: 270px;
+  min-height: 0;
+  padding: 0;
+  object-fit: cover;
+  object-position: center;
+  background: #e8e2d4;
+}
+
+@media (max-width: 640px) {
+  .book-detail-cover--image {
+    width: min(100%, 150px);
+    height: 225px;
+  }
+}
+
+.meta-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #b9af98;
+  text-underline-offset: 3px;
+}
+
+.meta-link:hover,
+.meta-link:focus-visible {
+  text-decoration-color: #1a1a1a;
+}
