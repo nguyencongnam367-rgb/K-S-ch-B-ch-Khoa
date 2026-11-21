@@ -1,0 +1,76 @@
+<%- include('../../components/page-heading', { titleBefore: 'Lập phiếu,', titleEm: 'trả sách', meta: 'Thao tác tại quầy thủ thư' }) %>
+
+<div class="loan-desk" id="loan-desk" data-limit="<%= desk.limit %>" data-loan-days="<%= desk.loanDays %>" data-prefill="<%= desk.prefillCode %>">
+  <%# Trang trái: lập phiếu mượn. Dữ liệu lấy từ API, hạn trả và các kiểm tra cuối cùng do máy chủ quyết định %>
+  <form class="desk-panel" id="issue-form" aria-labelledby="issue-title" novalidate>
+    <h2 id="issue-title">Lập <em>phiếu mượn</em></h2>
+
+    <div class="field">
+      <span class="field__label">Độc giả</span>
+      <div class="lookup">
+        <%- include('../../components/search-row', { id: 'reader-search', placeholder: 'Tìm tên, email hoặc mã độc giả' }) %>
+        <ul class="lookup__results" id="reader-results" hidden></ul>
+      </div>
+      <div class="reader-card" id="reader-card" hidden>
+        <span class="reader-card__avatar" id="reader-avatar" aria-hidden="true"></span>
+        <span id="reader-name"></span>
+        <span class="reader-card__meta" id="reader-meta"></span>
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="field__label">Thêm sách</span>
+      <div class="lookup">
+        <%- include('../../components/search-row', { id: 'issue-book-search', placeholder: 'Gõ tên sách hoặc ISBN' }) %>
+        <ul class="lookup__results" id="book-results" hidden></ul>
+      </div>
+      <ul class="picked-books" id="picked-books"></ul>
+    </div>
+
+    <div class="date-pair">
+      <label class="field">
+        <span class="field__label">Ngày mượn</span>
+        <%- include('../../components/input', { id: 'borrow-date', name: 'borrowDate', attrs: 'readonly' }) %>
+      </label>
+      <label class="field">
+        <span class="field__label">Hạn trả (tự tính)</span>
+        <%- include('../../components/input', { id: 'due-date', name: 'dueDate', attrs: 'readonly' }) %>
+      </label>
+    </div>
+
+    <ul class="check-list" id="issue-checks"></ul>
+    <p class="form-message" id="issue-message" role="status" hidden></p>
+
+    <%- include('../../components/button', { type: 'submit', variant: 'primary', className: 'desk-submit', label: 'Tạo phiếu mượn', id: 'issue-submit' }) %>
+  </form>
+
+  <%# Trang phải: trả sách và tính phạt %>
+  <form class="desk-panel" id="return-form" aria-labelledby="return-title" novalidate>
+    <h2 id="return-title">Trả <em>sách</em></h2>
+
+    <div class="field">
+      <span class="field__label">Mã phiếu</span>
+      <%- include('../../components/search-row', { id: 'loan-code-search', placeholder: 'Nhập mã phiếu, ví dụ LM-0001 rồi nhấn Enter' }) %>
+    </div>
+
+    <p class="desk-empty" id="return-empty">Nhập mã phiếu để xem sách và tiền phạt.</p>
+
+    <div id="return-detail" hidden>
+      <div class="loan-summary">
+        <span id="return-summary"></span>
+        <strong class="loan-summary__state" id="return-state"></strong>
+      </div>
+      <ul class="picked-books" id="return-books"></ul>
+      <dl class="fine-box" id="fine-box">
+        <div><dt>Số ngày quá hạn</dt><dd id="fine-days"></dd></div>
+        <div><dt>Mức phạt cố định</dt><dd id="fine-rate"></dd></div>
+        <div><dt>Hệ số giá trị sách</dt><dd id="fine-factor"></dd></div>
+        <div class="fine-box__total"><dt>Tiền phạt</dt><dd id="fine-total"></dd></div>
+      </dl>
+      <p class="desk-note">Máy chủ tự tính tiền phạt, thủ thư không nhập tay.</p>
+    </div>
+
+    <p class="form-message" id="return-message" role="status" hidden></p>
+    <%- include('../../components/button', { type: 'submit', variant: 'secondary', className: 'desk-submit', label: 'Xác nhận trả sách', id: 'return-submit', disabled: true }) %>
+  </form>
+</div>

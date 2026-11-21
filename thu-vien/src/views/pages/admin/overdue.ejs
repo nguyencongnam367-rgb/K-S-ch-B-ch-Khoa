@@ -1,0 +1,34 @@
+<%- include('../../components/page-heading', {
+  titleBefore: 'Phiếu',
+  titleEm: 'quá hạn',
+  actionLabel: 'Gửi nhắc tất cả',
+  actionAttrs: 'data-remind-all'
+}) %>
+
+<section class="summary-cards" aria-label="Tóm tắt quá hạn">
+  <div class="panel summary-card">
+    <span>Phiếu quá hạn</span>
+    <strong><%= totals.count %></strong>
+  </div>
+  <div class="panel summary-card">
+    <span>Tiền phạt tạm tính</span>
+    <strong><%= totals.fine %></strong>
+  </div>
+</section>
+
+<form method="get" action="/admin/overdue">
+  <%- include('../../components/search-row', { id: 'overdue-search', inputName: 'q', inputValue: query.q || '', placeholder: 'Tìm mã phiếu, tên độc giả' }) %>
+</form>
+
+<div class="loan-list">
+  <div class="loan-list__head" aria-hidden="true">
+    <span>MÃ PHIẾU</span><span>ĐỘC GIẢ</span><span>SÁCH</span><span>HẠN TRẢ</span><span>QUÁ HẠN</span><span></span>
+  </div>
+  <% loans.forEach(function (loan) { %>
+    <%- include('../../components/loan-row', { loan: loan }) %>
+  <% }); %>
+  <% if (!loans.length) { %><p class="empty-state">Hiện không có phiếu quá hạn nào.</p><% } %>
+</div>
+
+<%- include('../../components/pagination', { pager: pager, noun: 'phiếu' }) %>
+<p class="overdue-note">Phiếu quá hạn được hệ thống tự đánh dấu mỗi ngày. Tiền phạt tính từ số ngày quá hạn.</p>

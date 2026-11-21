@@ -1,0 +1,14 @@
+<%# Thanh tab gạch chân: tabsName, tabItems [{ key, label, count? }], activeTab. Panel khai báo data-tab-panel="key" %>
+<%
+  const tabList = Array.isArray(tabItems) ? tabItems : [];
+  const tabActive = typeof activeTab === 'string' ? activeTab : (tabList[0] ? tabList[0].key : '');
+%>
+<div class="tabs" role="tablist" data-tabs="<%= tabsName %>">
+  <% tabList.forEach(function (tab) { %>
+    <button class="tabs__tab<%= tab.key === tabActive ? ' is-active' : '' %>" type="button" role="tab"
+            id="tab-<%= tab.key %>" aria-controls="panel-<%= tab.key %>" aria-selected="<%= tab.key === tabActive %>"
+            tabindex="<%= tab.key === tabActive ? 0 : -1 %>" data-tab="<%= tab.key %>">
+      <%= tab.label %><% if (tab.count !== undefined) { %> · <%= tab.count %><% } %>
+    </button>
+  <% }); %>
+</div>
